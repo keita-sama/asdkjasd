@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Editor | Average Donut Enjoyer</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="http://skulpt.org/js/skulpt.min.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="http://skulpt.org/js/skulpt-stdlib.js"
+      type="text/javascript"
+    ></script>
+  </head>
+  <body>
+    <script type="module">
+      import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor@0.39.0/+esm";
+      window.monaco = monaco;
+      window.monaco.editor.defineTheme("wecode-black", {
+        base: "vs-dark",
+        // font: 'Rubik',
+        inherit: true,
+        rules: [],
+        colors: {
+          "editor.background": "#090A0A",
+        },
+      });
+
+      const editorDiv = document.getElementById("editor");
+      const editorSettings = {
+        language: "python",
+        theme: "wecode-black",
+        fontSize: 16,
+        // minimap: { enabled: false },
+        lineNumbersMinChars: 3,
+      };
+
+      window.editor = window.monaco.editor.create(editorDiv, editorSettings);
+
+      
+        window.onresize = () => {
+              console.log("this event launched!");
+            window.editor.render(true)
+        //   const currentCode = window.editor.getValue();
+        //   editorDiv.innerHTML = "";
+        //   window.editor = monaco.editor.create(editorDiv, {
+        //     ...editorSettings,
+        //     value: currentCode,
+        //   });
+        };
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/vscode-codicons@0.0.17/dist/codicon.min.css"
+      rel="stylesheet"
+    />
+
+    <div id="navigation" class="nav">
+      <button id="code" class="nav-btn btn-selected" onclick="showCode()">
+        <i class="codicon codicon-gist"></i>
+        Code
+      </button>
+      <button id="run" class="nav-btn" onclick="runCode()">
+        <i class="codicon codicon-play"></i>
+        Run
+      </button>
+      <button id="image" class="nav-btn" onclick="showDrawn()">
+        <i class="codicon codicon-terminal-tmux"></i>
+        Drawn
+      </button>
+    </div>
+    <!-- <div id="controls" class="nav">
+      <button id="unindent" class="nav-btn">
+        <i class="codicon codicon-arrow-small-left"></i>
+        Undent
+      </button>
+      <button id="indent" class="nav-btn">
+        <i class="codicon codicon-arrow-small-right"></i>
+        Indent
+      </button>
+      <button id="paste" class="nav-btn">
+        <i class="codicon codicon-clippy"></i>
+        Paste
+      </button>
+    </div> -->
+
+    <div id="tab-holder">
+      <div id="editor" class="editor tab"></div>
+      <div id="drawer" class="drawer tab off">
+        <div id="oogabooga">
+          <div id="turtle-canvas"></div>
+        </div>
+        <pre id="console" class="console"></pre>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      // output functions are configurable.  This one just appends some text
+      // to a pre element.
+      function outf(text) {
+        var mypre = document.getElementById("console");
+        mypre.innerHTML = mypre.innerHTML + text;
+      }
+      function builtinRead(x) {
+        if (
+          Sk.builtinFiles === undefined ||
+          Sk.builtinFiles["files"][x] === undefined
+        )
+          throw "File not found: '" + x + "'";
+        return Sk.builtinFiles["files"][x];
+      }
+
+      // Here's everything you need to run a python program in skulpt
+      // grab the code from your textarea
+      // get a reference to your pre element for output
+      // configure the output function
+      // call Sk.importMainWithBody()
+      function runit() {
+        console.log(window.editor.getValue());
+        var prog = window.editor.getValue();
+        var mypre = document.getElementById("console");
+        mypre.innerHTML = "";
+        Sk.pre = "output";
+        Sk.onAfterImport = function (library) {
+          switch (library) {
+            case "turtle":
+              // make turtle draw instantly
+              //   .defaults.animate = false;
+              console.log("Uhm, hello?");
+              break;
+          }
+        };
+        Sk.configure({ output: outf, read: builtinRead });
+        (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target =
+          "turtle-canvas";
+        var myPromise = Sk.misceval.asyncToPromise(function () {
+          return Sk.importMainWithBody("<stdin>", false, prog, true);
+        });
+        myPromise.then(
+          function (mod) {
+            console.log("success");
+          },
+          function (err) {
+            var mypre = document.getElementById("console");
+            mypre.innerHTML = err.toString();
+            // console.log(err.toString());
+          }
+        );
+      }
+    </script>
+    <script src="main.js"></script>
+  </body>
+</html>
