@@ -1,3 +1,5 @@
+/* its so fuckin difficult ot figure out a balance of sticky bottom */
+
 :root {
     --matte-black: #090A0A;
     --wecode-gray: #CED7DF;
@@ -25,21 +27,25 @@ body {
 .viewport {
     height: 100%;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column
 }
-.nav-holder {
+/* .nav-holder {
     position: sticky;
     display: flex;
     height: var(--nav-height);
     justify-content: center;
-    width: 100%;
-    background-color: var(--wecode-gray);
-}
+    
+} */
 
 .nav {
+
+    position: fixed;
+    bottom: 0;
+    background-color: var(--wecode-gray);
+    width: 100%;
     /* padding-left: 1rem; */
     display: flex;
-    /* height: var(--nav-height); */
+    height: var(--nav-height);
     justify-content: space-evenly;
     border-color: white;
     border-width: 2px;
@@ -48,8 +54,11 @@ body {
 }
 
 .nav-btn {
+
     font-weight: bold;
-    padding: 0 1.5rem;
+    width: 1fr;
+    padding: auto;
+    padding: 0 5%;
     display: flex;
     gap: 2px;
     flex-direction: column;
