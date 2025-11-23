@@ -14,44 +14,47 @@
       rel="stylesheet"
     />
 
-    <div id="viewport" class="viewport">
-      <div id="nav-holder" class="nav-holder">
-        <div id="navigation" class="nav">
-          <button id="files" class="nav-btn" onclick="showCode()">
-            <i class="codicon codicon-folder"></i>
-            Files
-          </button>
-          <button id="code" class="nav-btn btn-selected" onclick="showCode()">
-            <i class="codicon codicon-gist"></i>
-            Code
-          </button>
-          <button id="run" class="nav-btn" onclick="runCode()">
-            <i class="codicon codicon-play"></i>
-            Run
-          </button>
-          <button id="image" class="nav-btn" onclick="showDrawn()">
-            <i class="codicon codicon-terminal-tmux"></i>
-            Drawn
-          </button>
-          <button id="save" class="nav-btn" onclick="showCode()">
-            <i class="codicon codicon-save-as"></i>
-            Files
-          </button>
+    
+      <div id="navigation" class="nav">
+        <button id="files" class="nav-btn" onclick="showCode()">
+          <i class="codicon codicon-folder"></i>
+          Files
+        </button>
+        <button id="code" class="nav-btn btn-selected" onclick="showCode()">
+          <i class="codicon codicon-gist"></i>
+          Code
+        </button>
+        <button id="run" class="nav-btn" onclick="runCode()">
+          <i class="codicon codicon-play"></i>
+          Run
+        </button>
+        <button id="image" class="nav-btn" onclick="showDrawn()">
+          <i class="codicon codicon-terminal-tmux"></i>
+          Drawn
+        </button>
+        <button id="save" class="nav-btn" onclick="showCode()">
+          <i class="codicon codicon-save-as"></i>
+          Files
+        </button>
+      </div>
+      
+        <!-- <div id="editor" class="editor tab">
+          <div id="line-number" class="line-number"></div>
+          <textarea
+            id="code-editor"
+            class="editor-box"
+            onkeypress="generateLines()"
+            autocorrect="off"
+          ></textarea>
+        </div>
+        <div id="drawer" class="drawer tab off">
+          <div id="oogabooga">
+            <div id="turtle-canvas"></div>
+          </div>
+          <pre id="console" class="console"></pre>
         </div>
       </div>
-
-      <div id="editor" class="editor tab">
-        <div id="line-number" class="line-number"></div>
-        <textarea id='code-editor' class="editor-box" onkeypress="generateLines()" autocorrect="off"></textarea>
-      </div>
-      <div id="drawer" class="drawer tab off">
-        <div id="oogabooga">
-          <div id="turtle-canvas"></div>
-        </div>
-        <pre id="console" class="console"></pre>
-      </div>
-    </div>
-
+    </div> -->
     <script src="skulpt.js"></script>
     <script src="main.js"></script>
   </body>
