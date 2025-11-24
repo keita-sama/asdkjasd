@@ -2,6 +2,8 @@
 
 :root {
     --matte-black: #090A0A;
+    --gutter-border-gray: #272727;
+    --gutter-line-color: #777;
     --wecode-gray: #CED7DF;
     --wecode-gray-selected: #7b7f83;
     --nav-height: 3rem;
@@ -43,14 +45,10 @@ body {
     bottom: 0;
     background-color: var(--wecode-gray);
     width: 100%;
-    /* padding-left: 1rem; */
     display: flex;
     height: var(--nav-height);
     justify-content: space-evenly;
-    border-color: white;
-    border-width: 2px;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
+
 }
 
 .nav-btn {
@@ -86,6 +84,8 @@ body {
     display: flex;
     flex-direction: row;
     width: 100%;
+
+    line-height: var(--editor-line-height);
 }
 
 .line-number {
@@ -99,7 +99,7 @@ body {
     border-right: 2px solid var(--wecode-gray-selected);
     text-align: center;
 }
-.editor-box {
+/* .editor-box {
     padding-top: 8px;
     margin-left: 3px;;
     outline: none;
@@ -110,7 +110,7 @@ body {
     line-height: var(--editor-line-height);
     background-color: var(--matte-black);
     font-size: var(--editor-text-size);
-}
+} */
 
 .tab-holder {
     width: 100%;
@@ -146,4 +146,21 @@ body {
 
 .off {
     display: none;
+}
+
+/* Ace Editor Theme Modifications */
+
+.ace-tomorrow-night-bright {
+    background-color: var(--matte-black);
+    color: var(--wecode-gray)
+}
+
+.ace-tomorrow-night-bright .ace_gutter {
+    background: none;
+    color: var(--gutter-line-color);
+    border-right: 1px solid var(--gutter-border-gray);
+}
+
+.ace-tomorrow-night-bright .ace-active-line {
+    background-color: none;
 }
