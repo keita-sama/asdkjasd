@@ -54,22 +54,8 @@ function showDrawn() {
 //     })
 // }
 
-function generateLines() {
-    let outputStr = ''
-    const editorText = document.getElementById('code-editor').value;
-    const lineNumberDiv = document.getElementById('line-number');
-    const lines = editorText.split('\n');
-
-    for (let i = 0; i < lines.length; i++ ) {
-        outputStr += (i+1).toString() + '<br>'    
-    }
-
-    lineNumberDiv.innerHTML  = outputStr;
-    // console.log()
-    // alert(outputStr)
-}
 
 function runCode() {
   showDrawn();
-  //runit();
+  runit();
 }

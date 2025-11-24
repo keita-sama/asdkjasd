@@ -14,16 +14,15 @@
       rel="stylesheet"
     />
 
-
-
-    <div id="editor" class="editor tab"></div>
-    <div id="drawer" class="drawer tab off">
-      <div id="oogabooga">
-        <div id="turtle-canvas"></div>
+    <div id="tab-wrapper" class="tab">
+      <div id="editor" class="editor"></div>
+      <div id="drawer" class="drawer off">
+        <div id="oogabooga">
+          <div id="turtle-canvas"></div>
+        </div>
+        <pre id="console" class="console"></pre>
       </div>
-      <pre id="console" class="console"></pre>
     </div>
-
 
     <div id="navigation" class="nav">
       <button id="files" class="nav-btn" onclick="showCode()">
@@ -44,17 +43,71 @@
       </button>
       <button id="save" class="nav-btn" onclick="showCode()">
         <i class="codicon codicon-save-as"></i>
-        Files
+        Save
       </button>
     </div>
-
 
     <script
       src="https://cdn.jsdelivr.net/npm/ace-builds@1.43.4/src-min-noconflict/ace.min.js"
       type="text/javascript"
     ></script>
+    <script type="text/javascript">
+      // output functions are configurable.  This one just appends some text
+      // to a pre element.
+      function outf(text) {
+        var mypre = document.getElementById("console");
+        mypre.innerHTML = mypre.innerHTML + text;
+      }
+      function builtinRead(x) {
+        if (
+          Sk.builtinFiles === undefined ||
+          Sk.builtinFiles["files"][x] === undefined
+        )
+          throw "File not found: '" + x + "'";
+        return Sk.builtinFiles["files"][x];
+      }
+
+      // Here's everything you need to run a python program in skulpt
+      // grab the code from your textarea
+      // get a reference to your pre element for output
+      // configure the output function
+      // call Sk.importMainWithBody()
+      function runit() {
+        console.log(window.editor.getValue());
+        var prog = window.editor.getValue();
+        var mypre = document.getElementById("console");
+        mypre.innerHTML = "";
+        Sk.pre = "output";
+        Sk.onAfterImport = function (library) {
+          switch (library) {
+            case "turtle":
+              // make turtle draw instantly
+              //   .defaults.animate = false;
+              console.log("Uhm, hello?");
+              break;
+          }
+        };
+        Sk.configure({ output: outf, read: builtinRead });
+        (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target =
+          "turtle-canvas";
+        var myPromise = Sk.misceval.asyncToPromise(function () {
+          return Sk.importMainWithBody("<stdin>", false, prog, true);
+        });
+        myPromise.then(
+          function (mod) {
+            console.log("success");
+          },
+          function (err) {
+            var mypre = document.getElementById("console");
+            mypre.innerHTML = err.toString();
+            // console.log(err.toString());
+          }
+        );
+      }
+    </script>
     <script>
       var editor = ace.edit("editor");
+      window.editor = editor;
       editor.setTheme("ace/theme/tomorrow_night_bright");
       editor.session.setMode("ace/mode/python");
       editor.setFontSize("16px");
