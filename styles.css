@@ -41,7 +41,7 @@ body {
 
 .nav {
 
-    position: fixed;
+    position: sticky;
     bottom: 0;
     background-color: var(--wecode-gray);
     width: 100%;
