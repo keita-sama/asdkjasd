@@ -11,6 +11,10 @@
     --editor-text-size: 16px;
 }
 
+ @font-face {
+     font-family: Fira; src: url('fonts/FiraCode-Medium.ttf'); 
+}
+
 * {
     box-sizing: border-box;
 }
@@ -20,17 +24,18 @@ textarea {
 }
 
 body {
+    position: absolute;
+    top: 0;
+    left: 0;
     margin: 0 0;
     padding: 0 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
     background-color: var(--matte-black)
 }
 
-
-.viewport {
-    height: 100%;
-    display: flex;
-    flex-direction: column
-}
 /* .nav-holder {
     position: sticky;
     display: flex;
@@ -52,16 +57,15 @@ body {
 }
 
 .nav-btn {
-
-    font-weight: bold;
-    width: 1fr;
-    padding: auto;
+    /* font-weight: bold; */
+    font-family: Fira;
     padding: 0 5%;
+    padding-top: 5px;
     display: flex;
     gap: 2px;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     outline: none;
     border: none;
     background-color: var(--wecode-gray);
@@ -73,12 +77,6 @@ body {
     background-color:var(--matte-black);
     color: white;
 }
-/* 
-.nav-btn:hover {
-    outline: none;
-    border: none;
-    background-color: var(--wecode-gray-hover);
-} */
 
 .editor {
     display: flex;
@@ -101,43 +99,71 @@ body {
 }
 
 
-.tab-holder {
+.tab-wrapper {
+    height: 100%;
     width: 100%;
-    height: 100svh;
 }
+
 .tab {
-    width: 100%;
-    height: calc(100vh - var(--nav-height));
+    
+    /* height: calc(100vh - var(--nav-height)); */
     /* top: 3rem; */
+
 }
 
-
-#oogabooga {
-    display: flex;
-    justify-content: center;
-}
 
 .console {
-    flex: 1;
-    border-top-color: white;
-    border-top-width: 100%;
-    border-top-style: dashed;
+    font-family: Fira;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    border-top: 3px dashed #777;
     color: var(--wecode-gray);
     padding: 0.2rem 0.5rem;
     overflow: auto;
-    height: 100%;
     white-space: pre;
 }
 
+#canvas-wrapper {
+    display: flex;
+    justify-content: center;
+    min-width: 400px;
+    min-height: 400px;
+}
+
 #turtle-canvas {
-    width: 400px;
-    height: 400px;
-    margin: 50px;
+    /* width: 400px; */
+    /* height: 400px; */
+    /* margin: 50px; */
+    aspect-ratio: 1 / 1;
+    height: 100%;
 }
 
 .off {
     display: none;
 }
+
+/* Icon Declarations */
+/* 
+.icon {
+    background: no-repeat;
+    display: inline-block;
+    background-size: cover;
+    height: 20px;
+    width: 20px;
+}
+
+.run {
+    background-image: url('icons/run.svg');
+}
+
+.code {
+    background-image: url('icons/code.svg');
+}
+
+.drawn {
+    background-image: url('icons/drawn.svg');
+} */
 
 /* Ace Editor Theme Modifications */
 
