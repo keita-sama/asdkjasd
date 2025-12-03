@@ -1,7 +1,7 @@
 // Choose a cache name
 const cacheName = "cache-v1";
 // List the files to precache
-const precacheResources = [
+const assets = [
   // imma be real i made the extra resolutions but i don't think im gonna use them
   "images/128.png",
   "images/192.png",
