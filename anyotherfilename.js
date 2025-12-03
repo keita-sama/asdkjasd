@@ -10,21 +10,21 @@ const assets = [
 
   "/",
   "/index.html",
-  "/styles.css",
-  "/js/main.js",
+  "styles.css",
+  "js/main.js",
 
-  "/lib/ace.js",
-  "/lib/ace.min.js",
-  "/lib/mode-python.js",
-  "/lib/theme-tomorrow_night_bright.js",
+  "lib/ace/ace.js",
+  "lib/ace/ace.min.js",
+  "lib/ace/mode-python.js",
+  "lib/ace/theme-tomorrow_night_bright.js",
 
-  "/lib/codicons/codicons.css",
-  "/lib/codicons/codicons.min.css",
-  "/lib/codicons/codicons.ttf",
+  "lib/codicons/codicons.css",
+  "lib/codicons/codicons.min.css",
+  "lib/codicons/codicons.ttf",
 
-  "/lib/skulpt/skulpt-stdlib.js",
-  "/lib/skulpt/skulpt.js",
-  "/lib/skulpt/skulpt.min.js",
+  "lib/skulpt/skulpt-stdlib.js",
+  "lib/skulpt/skulpt.js",
+  "lib/skulpt/skulpt.min.js",
 ];
 
 const filesUpdate = cache => {
