@@ -27,11 +27,19 @@ const precacheResources = [
   "/lib/skulpt/skulpt.min.js",
 ];
 
+const filesUpdate = cache => {
+    const stack = [];
+    assets.forEach(file => stack.push(
+        cache.add(file).catch(_=>console.error(`can't load ${file} to cache`))
+    ));
+    return Promise.all(stack);
+};
+
 // When the service worker is installing, open the cache and add the precache resources to it
 self.addEventListener("install", (event) => {
   console.log("Service worker install event!");
   event.waitUntil(
-    caches.open(cacheName).then((cache) => cache.addAll(precacheResources))
+    caches.open(cacheName).then(filesUpdate)
   );
 });
 
