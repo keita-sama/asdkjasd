@@ -8,7 +8,7 @@ const assets = [
   "images/512.png",
   "images/codelogo.svg",
 
-  "/",
+  "/asdkjasd",
   "/index.html",
   "styles.css",
   "js/main.js",
