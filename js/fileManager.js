@@ -18,9 +18,9 @@ class CodeFile {
     this.code = code;
   }
   fromJSON(json) {
-    let json = this.getJSON(json);
+    let json2 = this.getJSON(json);
 
-    const parsedJSON = JSON.parse(json);
+    const parsedJSON = JSON.parse(json2);
 
     this.name = parsedJSON.name;
     this.date = new Date(parsedJSON.date);
@@ -55,9 +55,9 @@ class PreviousSessionCode extends CodeFile {
     }, 1000);
   }
   fromJSON(json) {
-    let json = this.getJSON(json);
+    let json2 = this.getJSON(json);
 
-    const parsedJSON = JSON.parse(json);
+    const parsedJSON = JSON.parse(json2);
 
     this.name = parsedJSON.name;
     this.date = new Date(parsedJSON.date);
