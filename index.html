@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Editor | Average Donut Enjoyer</title>
     <link rel="stylesheet" href="styles.css" />
-     <link rel="icon" type="image/x-icon" href="images/codelogo.svg">
-    <script src="lib/skulpt/skulpt.min.js" type="text/javascript"></script>
-    <script src="lib/skulpt/skulpt-stdlib.js" type="text/javascript"></script>
+    <link rel="icon" type="image/x-icon" href="images/codelogo.svg" />
   </head>
   <body>
     <link href="lib/codicons/codicon.min.css" rel="stylesheet" />
@@ -45,10 +43,9 @@
       </button>
     </div>
 
-    <script src="lib/ace/ace.min.js" type="text/javascript"></script>
+    <script src="lib/skulpt/skulpt.min.js" type="text/javascript"></script>
+    <script src="lib/skulpt/skulpt-stdlib.js" type="text/javascript"></script>
     <script type="text/javascript">
-      // output functions are configurable.  This one just appends some text
-      // to a pre element.
       function outf(text) {
         var mypre = document.getElementById("console");
         mypre.innerHTML = mypre.innerHTML + text;
@@ -62,11 +59,6 @@
         return Sk.builtinFiles["files"][x];
       }
 
-      // Here's everything you need to run a python program in skulpt
-      // grab the code from your textarea
-      // get a reference to your pre element for output
-      // configure the output function
-      // call Sk.importMainWithBody()
       function runit() {
         console.log(window.editor.getValue());
         var prog = window.editor.getValue();
@@ -76,8 +68,6 @@
         Sk.onAfterImport = function (library) {
           switch (library) {
             case "turtle":
-              // make turtle draw instantly
-              //   .defaults.animate = false;
               console.log("Uhm, hello?");
               break;
           }
@@ -85,21 +75,17 @@
         Sk.configure({ output: outf, read: builtinRead });
         (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target =
           "turtle-canvas";
-        var myPromise = Sk.misceval.asyncToPromise(function () {
+        const myPromise = Sk.misceval.asyncToPromise(function () {
           return Sk.importMainWithBody("<stdin>", false, prog, true);
         });
-        myPromise.then(
-          function (mod) {
-            console.log("success");
-          },
-          function (err) {
-            var mypre = document.getElementById("console");
-            mypre.innerHTML = err.toString();
-            // console.log(err.toString());
-          }
-        );
+
+        myPromise.then(() => console.log('success'), (err) => {
+            const console = document.getElementById("console");
+            console.innerHTML = err.toString();
+        });
       }
     </script>
+    <script src="lib/ace/ace.min.js" type="text/javascript"></script>
     <script>
       var editor = ace.edit("editor");
       window.editor = editor;
@@ -107,7 +93,6 @@
       editor.session.setMode("ace/mode/python");
       editor.setFontSize("16px");
     </script>
-
     <script src="lib/skulpt/skulpt.js"></script>
     <script src="js/main.js"></script>
     <script src="js/fileManager.js"></script>

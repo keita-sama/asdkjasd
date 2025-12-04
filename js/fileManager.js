@@ -72,6 +72,8 @@ class PreviousSessionCode extends CodeFile {
 
 // Initialize the File Manager;
 
+// ! TODO: Add the fucking file check and give dialogue to load in recent code or keep file same.
+
 addEventListener("DOMContentLoaded", (event) => {
   const recentCode = localStorage.getItem("recent-iteration-of-code");
   console.log("made it here");
