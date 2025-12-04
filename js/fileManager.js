@@ -18,7 +18,7 @@ class CodeFile {
     this.code = code;
   }
   fromJSON(json) {
-    this.getJSON(json);
+    let json = this.getJSON(json);
 
     const parsedJSON = JSON.parse(json);
 
@@ -55,7 +55,7 @@ class PreviousSessionCode extends CodeFile {
     }, 1000);
   }
   fromJSON(json) {
-    this.getJSON(json);
+    let json = this.getJSON(json);
 
     const parsedJSON = JSON.parse(json);
 
@@ -66,7 +66,7 @@ class PreviousSessionCode extends CodeFile {
     return this;
   }
   getJSON(json) {
-    if (!json) return new PreviousSessionCode();
+    if (!json) return new PreviousSessionCode("recent-iteration-of-code");
   }
 }
 
