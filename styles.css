@@ -1,5 +1,5 @@
 /* its so fuckin difficult ot figure out a balance of sticky bottom */
-
+/* github please deploy my site */
 :root {
     --matte-black: #090A0A;
     --gutter-border-gray: #272727;
@@ -181,4 +181,5 @@ body {
 
 .ace-tomorrow-night-bright .ace-active-line {
     background-color: none;
+
 }
