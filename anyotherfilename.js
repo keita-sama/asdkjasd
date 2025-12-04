@@ -1,8 +1,8 @@
 // Choose a cache name
-const cacheName = "cache-v1";
+const cacheName = "cache-vtest";
 // List the files to precache
 
-const baseName = 'asdkjasd';
+const baseName = "/asdkjasd";
 
 const assets = [
   // imma be real i made the extra resolutions but i don't think im gonna use them
@@ -11,7 +11,7 @@ const assets = [
   "/images/512.png",
   "/images/codelogo.svg",
 
-  "/asdkjasd",
+  "/",
   "/index.html",
   "/styles.css",
   "/js/main.js",
@@ -30,20 +30,27 @@ const assets = [
   "/lib/skulpt/skulpt.min.js",
 ];
 
-const filesUpdate = cache => {
-    const stack = [];
-    assets.forEach(file => stack.push(
-        cache.add(`${baseName}${file}`).catch(_=>console.error(`can't load ${file} to cache`))
-    ));
-    return Promise.all(stack);
+const filesUpdate = (cache) => {
+  const stack = [];
+
+  assets.forEach((file) => {
+    const filePath = `${baseName}${file}`;
+    stack.push(
+      cache
+        .add(filePath)
+        .catch((_) => {
+            console.error(_)
+            console.error(`can't load ${filePath} to cache`)
+        })
+    );
+  });
+  return Promise.all(stack);
 };
 
 // When the service worker is installing, open the cache and add the precache resources to it
 self.addEventListener("install", (event) => {
   console.log("Service worker install event!");
-  event.waitUntil(
-    caches.open(cacheName).then(filesUpdate)
-  );
+  event.waitUntil(caches.open(cacheName).then(filesUpdate));
 });
 
 self.addEventListener("activate", (event) => {
