@@ -6,14 +6,19 @@
     --gutter-line-color: #777;
     --wecode-gray: #CED7DF;
     --wecode-gray-selected: #7b7f83;
-    --nav-height: 3rem;
+    --nav-height: 45px;
     --editor-line-height: 1.5;
     --editor-text-size: 16px;
 }
 
- @font-face {
-     font-family: Fira; src: url('fonts/FiraCode-Medium.ttf'); 
+@font-face {
+     font-family: FiraMedium; src: url('fonts/FiraCode-Medium.ttf'); 
 }
+
+@font-face {
+     font-family: FiraLight; src: url('fonts/FiraCode-Light.ttf'); 
+}
+
 
 * {
     box-sizing: border-box;
@@ -52,14 +57,14 @@ body {
     background-color: var(--wecode-gray);
     width: 100%;
     display: flex;
-    height: var(--nav-height);
+    min-height: var(--nav-height);
     justify-content: space-evenly;
 
 }
 
 .nav-btn {
     /* font-weight: bold; */
-    font-family: Fira;
+    font-family: FiraMedium;
     padding: 0 5%;
     padding-top: 5px;
     display: flex;
@@ -71,10 +76,10 @@ body {
     border: none;
     background-color: var(--wecode-gray);
     color: black;
-
+    cursor: pointer;
 }
 
-.btn-selected {
+.nav-btn-selected {
     background-color:var(--matte-black);
     color: white;
 }
@@ -105,37 +110,32 @@ body {
     width: 100%;
 }
 
-.tab {
-    
-    /* height: calc(100vh - var(--nav-height)); */
-    /* top: 3rem; */
-
-}
-
-
 .console {
-    font-family: Consolas;
+    font-family: FiraLight;
     width: 100%;
-    height: 100%;
-    position: fixed;
     border-top: 3px dashed #777;
     color: var(--wecode-gray);
     padding: 0.2rem 0.5rem;
     overflow: auto;
     white-space: pre;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
 }
 
-#canvas-wrapper {
+.drawer {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - var(--nav-height))
+}
+
+.canvas-wrapper {
     display: flex;
     justify-content: center;
-    min-width: 400px;
-    min-height: 400px;
+    min-width: 300px;
+    min-height: 300px;
 }
 
 #turtle-canvas {
-    /* width: 400px; */
-    /* height: 400px; */
-    /* margin: 50px; */
     aspect-ratio: 1 / 1;
     height: 100%;
 }

@@ -19,8 +19,8 @@ function showCode() {
 
   if (!canvas.classList.contains("off")) {
     canvas.classList.add("off");
-    codeBtn.classList.add("btn-selected");
-    imageBtn.classList.remove("btn-selected");
+    codeBtn.classList.add("nav-btn-selected");
+    imageBtn.classList.remove("nav-btn-selected");
   }
   if (editor.classList.contains("off")) {
     editor.classList.remove("off");
@@ -36,8 +36,8 @@ function showDrawn() {
 
   if (!editor.classList.contains("off")) {
     editor.classList.add("off");
-    codeBtn.classList.remove("btn-selected");
-    imageBtn.classList.add("btn-selected");
+    codeBtn.classList.remove("nav-btn-selected");
+    imageBtn.classList.add("nav-btn-selected");
   }
   if (canvas.classList.contains("off")) {
     canvas.classList.remove("off");
