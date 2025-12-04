@@ -1,36 +1,39 @@
 // Choose a cache name
 const cacheName = "cache-v1";
 // List the files to precache
+
+const baseName = 'asdkjasd';
+
 const assets = [
   // imma be real i made the extra resolutions but i don't think im gonna use them
-  "images/128.png",
-  "images/192.png",
-  "images/512.png",
-  "images/codelogo.svg",
+  "/images/128.png",
+  "/images/192.png",
+  "/images/512.png",
+  "/images/codelogo.svg",
 
   "/",
   "/index.html",
-  "styles.css",
-  "js/main.js",
+  "/styles.css",
+  "/js/main.js",
 
-  "lib/ace/ace.js",
-  "lib/ace/ace.min.js",
-  "lib/ace/mode-python.js",
-  "lib/ace/theme-tomorrow_night_bright.js",
+  "/lib/ace/ace.js",
+  "/lib/ace/ace.min.js",
+  "/lib/ace/mode-python.js",
+  "/lib/ace/theme-tomorrow_night_bright.js",
 
-  "lib/codicons/codicons.css",
-  "lib/codicons/codicons.min.css",
-  "lib/codicons/codicons.ttf",
+  "/lib/codicons/codicons.css",
+  "/lib/codicons/codicons.min.css",
+  "/lib/codicons/codicons.ttf",
 
-  "lib/skulpt/skulpt-stdlib.js",
-  "lib/skulpt/skulpt.js",
-  "lib/skulpt/skulpt.min.js",
+  "/lib/skulpt/skulpt-stdlib.js",
+  "/lib/skulpt/skulpt.js",
+  "/lib/skulpt/skulpt.min.js",
 ];
 
 const filesUpdate = cache => {
     const stack = [];
     assets.forEach(file => stack.push(
-        cache.add(file).catch(_=>console.error(`can't load ${file} to cache`))
+        cache.add(`${baseName}${file}`).catch(_=>console.error(`can't load ${file} to cache`))
     ));
     return Promise.all(stack);
 };

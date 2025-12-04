@@ -4,23 +4,23 @@
   "background_color": "#090A0A",
   "display": "standalone",
   "orientation": "portrait",
-  "scope": "/",
-  "id": "/",
-  "start_url": "/",
+  "scope": "/asdkjasd",
+  "id": "/asdkjasd",
+  "start_url": "/asdkjasd",
   "version": "0.1",
   "icons": [
     {
-      "src": "/images/128.png",
+      "src": "asdkjasd/images/128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "/images/192.png",
+      "src": "asdkjasd//images/192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/images/512.png",
+      "src": "asdkjasd/images/512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
