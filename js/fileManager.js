@@ -24,7 +24,7 @@ class CodeFile {
 
     this.name = parsedJSON.name;
     this.date = new Date(parsedJSON.date);
-    this.code = parsedJSON.code;
+    this.code = parsedJSON?.code || '';
 
     return this;
   }
