@@ -22,9 +22,9 @@ const assets = [
   "/lib/ace/mode-python.js",
   "/lib/ace/theme-tomorrow_night_bright.js",
 
-  "/lib/codicons/codicons.css",
-  "/lib/codicons/codicons.min.css",
-  "/lib/codicons/codicons.ttf",
+  "/lib/codicons/codicon.css",
+  "/lib/codicons/codicon.min.css",
+  "/lib/codicons/codicon.ttf",
 
   "/lib/skulpt/skulpt-stdlib.js",
   "/lib/skulpt/skulpt.js",
