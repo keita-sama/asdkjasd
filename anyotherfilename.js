@@ -40,12 +40,10 @@ const filesUpdate = (cache) => {
   assets.forEach((file) => {
     const filePath = `${baseName}${file}`;
     stack.push(
-      cache
-        .add(filePath)
-        .catch((_) => {
-            console.error(_)
-            console.error(`can't load ${filePath} to cache`)
-        })
+      cache.add(filePath).catch((_) => {
+        console.error(_);
+        console.error(`can't load ${filePath} to cache`);
+      })
     );
   });
   return Promise.all(stack);
