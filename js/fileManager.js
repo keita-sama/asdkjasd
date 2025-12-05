@@ -12,7 +12,7 @@ class CodeFile {
   constructor(name) {
     this.name = name;
     this.date = Date.now();
-    this.code;
+    this.code = '';
   }
   setContent(code) {
     this.code = code;
@@ -62,7 +62,7 @@ class PreviousSessionCode extends CodeFile {
 
     this.name = parsedJSON.name;
     this.date = new Date(parsedJSON.date);
-    this.code = parsedJSON.code;
+    this.code = parsedJSON?.code || '';
 
     return this;
   }
