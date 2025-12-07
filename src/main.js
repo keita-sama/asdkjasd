@@ -1,14 +1,16 @@
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", async () => {
-    try {
-      let reg;
-      reg = await navigator.serviceWorker.register("anyotherfilename.js");
-      console.log("Service worker registered!", reg);
-    } catch (err) {
-      console.log("Service worker registration failed: ", err);
-    }
-  });
-}
+// if ("serviceWorker" in navigator) {
+//   window.addEventListener("load", async () => {
+//     try {
+//       let reg;
+//       reg = await navigator.serviceWorker.register("anyotherfilename.js");
+//       console.log("Service worker registered!", reg);
+//     } catch (err) {
+//       console.log("Service worker registration failed: ", err);
+//     }
+//   });
+// }
+
+import { runit } from './runner';
 
 function showCode() {
   const canvas = document.getElementById("drawer");
@@ -44,22 +46,18 @@ function showDrawn() {
   }
 }
 
-// Ace editor stuff
-// function indentLine() {
-//     window.editor.blockIndent()
-// }
-
-// function unindentLine() {
-//     window.editor.blockOutdent()
-// }
-
-// function pasteText() {
-//     navigator.clipboard.readText().then(text => {
-//         document.getElementById('editor').innerHTML = text;
-//     })
-// }
 
 function runCode() {
   showDrawn();
   runit();
 }
+
+
+// NOTE to self about vite, you have to use the code inside the fiule otherwise it gets cleaned
+const runBtn = document.getElementById('run')
+const codeBtn = document.getElementById('code')
+const drawnBtn = document.getElementById('image')
+
+runBtn.onclick = runCode;
+codeBtn.onclick = showCode;
+drawnBtn.onclick = showDrawn;

@@ -1,18 +1,8 @@
-function clearSelection() {
-  if (window.getSelection) {
-    window.getSelection().removeAllRanges();
-  } else if (document.selection) {
-    document.selection.empty();
-  }
-
-  console.log('selection cleared! allegedly')
-}
-
 class CodeFile {
   constructor(name) {
     this.name = name;
-    this.date = Date.now();
-    this.code = '';
+    this.date = new Date();
+    this.code = "";
   }
   setContent(code) {
     this.code = code;
@@ -24,7 +14,7 @@ class CodeFile {
 
     this.name = parsedJSON.name;
     this.date = new Date(parsedJSON.date);
-    this.code = parsedJSON?.code || '';
+    this.code = parsedJSON?.code || "";
 
     return this;
   }
@@ -38,7 +28,7 @@ class CodeFile {
     return JSON.stringify(toStringifiy);
   }
   getJSON(json) {
-    if (!json) return new PreviousSessionCode();
+    if (!json) return (new PreviousSessionCode()).toJSON();
     return json;
   }
 }
@@ -53,7 +43,7 @@ class PreviousSessionCode extends CodeFile {
       this.code = window.editor.getValue();
       this.date = new Date().toString();
       localStorage.setItem(this.name, this.toJSON());
-    }, 1000);
+    }, 300);
   }
   fromJSON(json) {
     let unparsedJSON = this.getJSON(json);
@@ -62,12 +52,12 @@ class PreviousSessionCode extends CodeFile {
 
     this.name = parsedJSON.name;
     this.date = new Date(parsedJSON.date);
-    this.code = parsedJSON?.code || '';
+    this.code = parsedJSON?.code || "";
 
     return this;
   }
   getJSON(json) {
-    if (!json) return new PreviousSessionCode("recent-iteration-of-code");
+    if (!json) return (new PreviousSessionCode()).toJSON();
     return json;
   }
 }
@@ -78,15 +68,12 @@ class PreviousSessionCode extends CodeFile {
 
 addEventListener("DOMContentLoaded", (event) => {
   const recentCode = localStorage.getItem("recent-iteration-of-code");
-  console.log("made it here");
   const autosavedCode = new PreviousSessionCode().fromJSON(recentCode);
 
-  if (!recentCode) {
-    console.log("test");
+  if (!recentCode || autosavedCode.code == "") {
     window.editor.setValue("from turtle import *");
   } else {
     window.editor.setValue(autosavedCode.code);
-    clearSelection();
   }
 
   autosavedCode.startAutosave();
